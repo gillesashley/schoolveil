@@ -36,86 +36,89 @@
                                                      class="dataTables_wrapper dt-bootstrap4">
 
                                                 </div>
-                                                <table id="key-act-button"
-                                                       class="display table nowrap table-striped table-hover dataTable"
-                                                       style="width: 100%;" role="grid"
-                                                       aria-describedby="key-act-button_info">
-                                                    <thead>
-                                                    <tr role="row">
-                                                        <th class="sorting_asc" tabindex="0"
-                                                            aria-controls="key-act-button" rowspan="1" colspan="1"
-                                                            aria-sort="ascending"
-                                                            aria-label="Name: activate to sort column descending"
-                                                            style="width: 105px;">Firstname
-                                                        </th>
-                                                        <th class="sorting" tabindex="0"
-                                                            aria-controls="key-act-button" rowspan="1" colspan="1"
-                                                            aria-label="Position: activate to sort column ascending"
-                                                            style="width: 164px;">Lastname
-                                                        </th>
-                                                        <th class="sorting" tabindex="0"
-                                                            aria-controls="key-act-button" rowspan="1" colspan="1"
-                                                            aria-label="Office: activate to sort column ascending"
-                                                            style="width: 72px;">Guardian
-                                                        </th>
-                                                        <th class="sorting" tabindex="0"
-                                                            aria-controls="key-act-button" rowspan="1" colspan="1"
-                                                            aria-label="Age: activate to sort column ascending"
-                                                            style="width: 26px;">Phone Number
-                                                        </th>
-                                                        <th class="sorting" tabindex="0"
-                                                            aria-controls="key-act-button" rowspan="1" colspan="1"
-                                                            aria-label="Age: activate to sort column ascending"
-                                                            style="width: 26px;">DOB
-                                                        </th>
-                                                        <th class="sorting" tabindex="0"
-                                                            aria-controls="key-act-button" rowspan="1" colspan="1"
-                                                            aria-label="Age: activate to sort column ascending"
-                                                            style="width: 26px;">Action
-                                                        </th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    @forelse($students as $index => $student)
-                                                        <tr role="row" class="odd">
-                                                            <td class="sorting_1">{{ $student->firstname }}</td>
-                                                            <td>{{ $student->lastname }}</td>
-                                                            <td>{{ $student->guardian }}</td>
-                                                            <td>{{ $student->phone_number  }}</td>
-                                                            <td>{{ $student->dob  }}</td>
-                                                            <td><a href="{{ route('students.edit', $student->id) }}"
-                                                                   class="btn btn-primary btn-sm btn-icon" title="Edit">
-                                                                    <i class="feather icon-edit"></i>
-                                                                </a>
-                                                                <form
-                                                                    action="{{ route('students.destroy', $student->id) }}"
-                                                                    method="POST" style="display: inline-block">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                    <button type="submit"
-                                                                            class="btn btn-danger btn-sm btn-icon"
-                                                                            title="Delete"
-                                                                            onclick="return confirm('Are you sure you want to delete this student?')">
-                                                                        <i class="feather icon-trash-2"></i>
-                                                                    </button>
-                                                                </form>
-                                                            </td>
+                                                @if(count($students) < 1)
+                                                    <h1>No Students Yet.</h1>
+                                                @else
+                                                    <table id="key-act-button"
+                                                           class="display table nowrap table-striped table-hover dataTable"
+                                                           style="width: 100%;" role="grid"
+                                                           aria-describedby="key-act-button_info">
+                                                        <thead>
+                                                        <tr role="row">
+                                                            <th class="sorting_asc" tabindex="0"
+                                                                aria-controls="key-act-button" rowspan="1" colspan="1"
+                                                                aria-sort="ascending"
+                                                                aria-label="Name: activate to sort column descending"
+                                                                style="width: 105px;">Firstname
+                                                            </th>
+                                                            <th class="sorting" tabindex="0"
+                                                                aria-controls="key-act-button" rowspan="1" colspan="1"
+                                                                aria-label="Position: activate to sort column ascending"
+                                                                style="width: 164px;">Lastname
+                                                            </th>
+                                                            <th class="sorting" tabindex="0"
+                                                                aria-controls="key-act-button" rowspan="1" colspan="1"
+                                                                aria-label="Office: activate to sort column ascending"
+                                                                style="width: 72px;">Guardian
+                                                            </th>
+                                                            <th class="sorting" tabindex="0"
+                                                                aria-controls="key-act-button" rowspan="1" colspan="1"
+                                                                aria-label="Age: activate to sort column ascending"
+                                                                style="width: 26px;">Phone Number
+                                                            </th>
+                                                            <th class="sorting" tabindex="0"
+                                                                aria-controls="key-act-button" rowspan="1" colspan="1"
+                                                                aria-label="Age: activate to sort column ascending"
+                                                                style="width: 26px;">DOB
+                                                            </th>
+                                                            <th class="sorting" tabindex="0"
+                                                                aria-controls="key-act-button" rowspan="1" colspan="1"
+                                                                aria-label="Age: activate to sort column ascending"
+                                                                style="width: 26px;">Action
+                                                            </th>
                                                         </tr>
-                                                    @empty
-                                                        <h1>No Student Yet</h1>
-                                                    @endforelse
-                                                    </tbody>
-                                                    <tfoot>
-                                                    <tr>
-                                                        <th rowspan="1" colspan="1">Firstname</th>
-                                                        <th rowspan="1" colspan="1">Lastname</th>
-                                                        <th rowspan="1" colspan="1">Guardian</th>
-                                                        <th rowspan="1" colspan="1">Phone Number</th>
-                                                        <th rowspan="1" colspan="1">DOB</th>
-                                                        <th rowspan="1" colspan="1">Action</th>
-                                                    </tr>
-                                                    </tfoot>
-                                                </table>
+                                                        </thead>
+                                                        <tbody>
+                                                        @foreach($students as $index => $student)
+                                                            <tr role="row" class="odd">
+                                                                <td class="sorting_1">{{ $student->firstname }}</td>
+                                                                <td>{{ $student->lastname }}</td>
+                                                                <td>{{ $student->guardian }}</td>
+                                                                <td>{{ $student->phone_number  }}</td>
+                                                                <td>{{ $student->dob  }}</td>
+                                                                <td><a href="{{ route('students.edit', $student->id) }}"
+                                                                       class="btn btn-primary btn-sm btn-icon"
+                                                                       title="Edit">
+                                                                        <i class="feather icon-edit"></i>
+                                                                    </a>
+                                                                    <form
+                                                                        action="{{ route('students.destroy', $student->id) }}"
+                                                                        method="POST" style="display: inline-block">
+                                                                        @csrf
+                                                                        @method('DELETE')
+                                                                        <button type="submit"
+                                                                                class="btn btn-danger btn-sm btn-icon"
+                                                                                title="Delete"
+                                                                                onclick="return confirm('Are you sure you want to delete this student?')">
+                                                                            <i class="feather icon-trash-2"></i>
+                                                                        </button>
+                                                                    </form>
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
+                                                        </tbody>
+                                                        <tfoot>
+                                                        <tr>
+                                                            <th rowspan="1" colspan="1">Firstname</th>
+                                                            <th rowspan="1" colspan="1">Lastname</th>
+                                                            <th rowspan="1" colspan="1">Guardian</th>
+                                                            <th rowspan="1" colspan="1">Phone Number</th>
+                                                            <th rowspan="1" colspan="1">DOB</th>
+                                                            <th rowspan="1" colspan="1">Action</th>
+                                                        </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
