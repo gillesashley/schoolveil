@@ -13,26 +13,46 @@ use function Termwind\render;
 
 class StudentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index(): Factory|Application|View|\Illuminate\Contracts\Foundation\Application
     {
-        return view('pages.students.index');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $students = auth()->user()->students()->get();
+        return view('pages.students.index', [
+            'students' => $students
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(StoreStudentRequest $request)
+    {
+        $validated = $request->validated();
+
+        $student = Student::create([
+            'firstname' => $validated['firstname'],
+            'lastname' => $validated['lastname'],
+            'address' => $validated['address'],
+            'guardian' => $validated['guardian'],
+            'dob' => $validated['dob'],
+            'phone_number' => $validated['phone_number'],
+            'user_id' => auth()->user()->id,
+        ]);
+
+        return back()->withSuccess('Student created successfully');
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
     {
         //
     }
@@ -66,6 +86,7 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        //
+        $student->delete();
+        return back()->withSuccess('Student Deleted Successfully');
     }
 }

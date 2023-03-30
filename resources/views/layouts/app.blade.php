@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
-{{--    <meta name="csrf-token" content="{{ csrf_token() }}">--}}
+    {{--    <meta name="csrf-token" content="{{ csrf_token() }}">--}}
 
-{{--    <title>{{ config('app.name', 'Laravel') }}</title>--}}
+    {{--    <title>{{ config('app.name', 'Laravel') }}</title>--}}
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -29,20 +29,20 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
 </head>
 <body>
-    <div id="app">
-        @include('layouts/inc/sidenav')
-        @include('layouts/inc/header')
+<div id="app">
+    @include('layouts/inc/sidenav')
+    @include('layouts/inc/header')
 
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
+    <main>
+        @yield('content')
+    </main>
+</div>
 
-    <!-- Required Js -->
-    <script src="{{asset('assets/js/vendor-all.min.js')}}"></script>
-    <script src="{{asset('assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+<!-- Required Js -->
+<script src="{{asset('assets/js/vendor-all.min.js')}}"></script>
+<script src="{{asset('assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
 
-    <script src="{{asset('assets/js/pcoded.min.js')}}"></script>
+<script src="{{asset('assets/js/pcoded.min.js')}}"></script>
 
 @stack('script')
 </body>

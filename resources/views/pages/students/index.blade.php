@@ -14,6 +14,11 @@
                             <!-- [ Main Content ] start -->
                             <div class="row">
                                 <div class="col-sm-12">
+                                    @if (session('success'))
+                                        <div class="alert alert-success">
+                                            <h4 class="alert-heading">{{ session('success') }}</h4>
+                                        </div>
+                                    @endif
                                     <div class="card">
                                         <div class="card-header d-flex">
                                             <h5 class="mr-auto">My Students</h5>
@@ -41,63 +46,73 @@
                                                             aria-controls="key-act-button" rowspan="1" colspan="1"
                                                             aria-sort="ascending"
                                                             aria-label="Name: activate to sort column descending"
-                                                            style="width: 105px;">Name
+                                                            style="width: 105px;">Firstname
                                                         </th>
                                                         <th class="sorting" tabindex="0"
                                                             aria-controls="key-act-button" rowspan="1" colspan="1"
                                                             aria-label="Position: activate to sort column ascending"
-                                                            style="width: 164px;">Position
+                                                            style="width: 164px;">Lastname
                                                         </th>
                                                         <th class="sorting" tabindex="0"
                                                             aria-controls="key-act-button" rowspan="1" colspan="1"
                                                             aria-label="Office: activate to sort column ascending"
-                                                            style="width: 72px;">Office
+                                                            style="width: 72px;">Guardian
                                                         </th>
                                                         <th class="sorting" tabindex="0"
                                                             aria-controls="key-act-button" rowspan="1" colspan="1"
                                                             aria-label="Age: activate to sort column ascending"
-                                                            style="width: 26px;">Age
+                                                            style="width: 26px;">Phone Number
                                                         </th>
                                                         <th class="sorting" tabindex="0"
                                                             aria-controls="key-act-button" rowspan="1" colspan="1"
-                                                            aria-label="Start date: activate to sort column ascending"
-                                                            style="width: 68px;">Start date
+                                                            aria-label="Age: activate to sort column ascending"
+                                                            style="width: 26px;">DOB
                                                         </th>
                                                         <th class="sorting" tabindex="0"
                                                             aria-controls="key-act-button" rowspan="1" colspan="1"
-                                                            aria-label="Salary: activate to sort column ascending"
-                                                            style="width: 42px;">Salary
+                                                            aria-label="Age: activate to sort column ascending"
+                                                            style="width: 26px;">Action
                                                         </th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-
-
-                                                    <tr role="row" class="odd">
-                                                        <td class="sorting_1">Airi Satou</td>
-                                                        <td>Accountant</td>
-                                                        <td>Tokyo</td>
-                                                        <td>33</td>
-                                                        <td>2008/11/28</td>
-                                                        <td>$162,700</td>
-                                                    </tr>
-                                                    <tr role="row" class="even">
-                                                        <td class="sorting_1">Ashton Cox</td>
-                                                        <td>Junior Technical Author</td>
-                                                        <td>San Francisco</td>
-                                                        <td>66</td>
-                                                        <td>2009/01/12</td>
-                                                        <td>$86,000</td>
-                                                    </tr>
+                                                    @forelse($students as $index => $student)
+                                                        <tr role="row" class="odd">
+                                                            <td class="sorting_1">{{ $student->firstname }}</td>
+                                                            <td>{{ $student->lastname }}</td>
+                                                            <td>{{ $student->guardian }}</td>
+                                                            <td>{{ $student->phone_number  }}</td>
+                                                            <td>{{ $student->dob  }}</td>
+                                                            <td><a href="{{ route('students.edit', $student->id) }}"
+                                                                   class="btn btn-primary btn-sm btn-icon" title="Edit">
+                                                                    <i class="feather icon-edit"></i>
+                                                                </a>
+                                                                <form
+                                                                    action="{{ route('students.destroy', $student->id) }}"
+                                                                    method="POST" style="display: inline-block">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="submit"
+                                                                            class="btn btn-danger btn-sm btn-icon"
+                                                                            title="Delete"
+                                                                            onclick="return confirm('Are you sure you want to delete this student?')">
+                                                                        <i class="feather icon-trash-2"></i>
+                                                                    </button>
+                                                                </form>
+                                                            </td>
+                                                        </tr>
+                                                    @empty
+                                                        <h1>No Student Yet</h1>
+                                                    @endforelse
                                                     </tbody>
                                                     <tfoot>
                                                     <tr>
-                                                        <th rowspan="1" colspan="1">Name</th>
-                                                        <th rowspan="1" colspan="1">Position</th>
-                                                        <th rowspan="1" colspan="1">Office</th>
-                                                        <th rowspan="1" colspan="1">Age</th>
-                                                        <th rowspan="1" colspan="1">Start date</th>
-                                                        <th rowspan="1" colspan="1">Salary</th>
+                                                        <th rowspan="1" colspan="1">Firstname</th>
+                                                        <th rowspan="1" colspan="1">Lastname</th>
+                                                        <th rowspan="1" colspan="1">Guardian</th>
+                                                        <th rowspan="1" colspan="1">Phone Number</th>
+                                                        <th rowspan="1" colspan="1">DOB</th>
+                                                        <th rowspan="1" colspan="1">Action</th>
                                                     </tr>
                                                     </tfoot>
                                                 </table>
