@@ -15,39 +15,23 @@
                 <li class="nav-item pcoded-menu-caption">
                     <label>Navigation</label>
                 </li>
-                <li data-username="dashboard"
-                    class="nav-item pcoded-hasmenu">
+                <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project"
+                    class="nav-item pcoded-hasmenu {{Route::is('home') ? 'active' : ''}}">
                     <a href="{{route('home')}}" class="nav-link"><span class="pcoded-micon"><i
                                 class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
                 </li>
-                <li data-username="students"
-                    class="nav-item pcoded-hasmenu">
+                <li data-username="Vertical Horizontal Box Layout RTL fixed static Collapse menu color icon dark"
+                    class="nav-item pcoded-hasmenu {{Route::is('students.index') ? 'active' : ''}}">
                     <a href="{{route('students.index')}}" class="nav-link"><span class="pcoded-micon"><i
                                 class="feather icon-layout"></i></span><span class="pcoded-mtext">Students</span></a>
                 </li>
                 <li data-username="widget Statistic Data Table User card Chart" class="nav-item pcoded-hasmenu">
                     <a href="#!" class="nav-link"><span class="pcoded-micon"><i
-                                class="feather icon-layers"></i></span><span class="pcoded-mtext">Grading</span><span
-                            class="pcoded-badge label label-info">100+</span></a>
-                    <ul class="pcoded-submenu">
-                        <li class=""><a href="widget-statistic.html" class="">Statistic</a></li>
-                        <li class=""><a href="widget-data.html" class="">Data</a></li>
-                        <li class=""><a href="widget-table.html" class="">Table</a></li>
-                        <li class=""><a href="widget-user-card.html" class="">User</a></li>
-                        <li class=""><a href="widget-chart.html" class="">Chart</a></li>
-                    </ul>
+                                class="feather icon-layers"></i></span><span class="pcoded-mtext">Grading</span></a>
                 </li>
                 <li data-username="widget Statistic Data Table User card Chart" class="nav-item pcoded-hasmenu">
                     <a href="#!" class="nav-link"><span class="pcoded-micon"><i
-                                class="feather icon-layers"></i></span><span class="pcoded-mtext">Reports</span><span
-                            class="pcoded-badge label label-info">100+</span></a>
-                    <ul class="pcoded-submenu">
-                        <li class=""><a href="widget-statistic.html" class="">Statistic</a></li>
-                        <li class=""><a href="widget-data.html" class="">Data</a></li>
-                        <li class=""><a href="widget-table.html" class="">Table</a></li>
-                        <li class=""><a href="widget-user-card.html" class="">User</a></li>
-                        <li class=""><a href="widget-chart.html" class="">Chart</a></li>
-                    </ul>
+                                class="feather icon-layers"></i></span><span class="pcoded-mtext">Reports</span></a>
                 </li>
             </ul>
         </div>

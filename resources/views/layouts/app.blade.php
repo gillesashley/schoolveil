@@ -1,13 +1,13 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+{{--<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">--}}
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+{{--    <meta name="csrf-token" content="{{ csrf_token() }}">--}}
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+{{--    <title>{{ config('app.name', 'Laravel') }}</title>--}}
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -24,7 +24,8 @@
     <link rel="stylesheet" href="{{ asset('assets/plugins/animation/css/animate.min.css')}}">
     <!-- notification css -->
     <link rel="stylesheet" href="{{ asset('assets/plugins/notification/css/notification.min.css')}}">
-    <!-- vendor css -->
+
+    @stack('styles')
     <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
 </head>
 <body>
@@ -42,20 +43,7 @@
     <script src="{{asset('assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
 
     <script src="{{asset('assets/js/pcoded.min.js')}}"></script>
-    <!-- amchart js -->
-    <script src="{{asset('assets/plugins/amchart/js/amcharts.js')}}"></script>
-    <script src="{{asset('assets/plugins/amchart/js/gauge.js')}}"></script>
-    <script src="{{asset('assets/plugins/amchart/js/serial.js')}}"></script>
-    <script src="{{asset('assets/plugins/amchart/js/light.js')}}"></script>
-    <script src="{{asset('assets/plugins/amchart/js/pie.min.js')}}"></script>
-    <script src="{{asset('assets/plugins/amchart/js/ammap.min.js')}}"></script>
-    <script src="{{asset('assets/plugins/amchart/js/usaLow.js')}}"></script>
-    <script src="{{asset('assets/plugins/amchart/js/radar.js')}}"></script>
-    <script src="{{asset('assets/plugins/amchart/js/worldLow.js')}}"></script>
-    <!-- notification Js -->
-    <script src="{{asset('assets/plugins/notification/js/bootstrap-growl.min.js')}}"></script>
 
-    <!-- dashboard-custom js -->
-    <script src="{{asset('assets/js/pages/dashboard-custom.js')}}"></script>
+@stack('script')
 </body>
 </html>
