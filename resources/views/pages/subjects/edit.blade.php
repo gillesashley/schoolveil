@@ -15,9 +15,9 @@
                     @csrf
                     @method('PUT')
                     <div class="form-group">
-                        <label for="firstname" class="col-form-label">Name:</label>
+                        <label for="name" class="col-form-label">Name:</label>
                         <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
-                               name="subject" value="{{ $subject->name }}" required>
+                               name="name" value="{{ $subject->name }}" required>
                         @error('name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -37,7 +37,7 @@
 @push('script')
     <script>
         $(document).ready(function () {
-            $('#subjectEditForm').submit(function (event) {
+            $('form').submit(function (event) {
                 var form = $(this);
                 if (form[0].checkValidity() === false) {
                     event.preventDefault();

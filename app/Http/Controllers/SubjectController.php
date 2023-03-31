@@ -68,7 +68,7 @@ class SubjectController extends Controller
         try {
             $validated = $request->validated();
             $subject->update($validated + ['user_id' => auth()->user()->id]);
-            return back()->withSuccess('Subject edited successfully');
+            return back()->withSuccess('Subject edited!');
         } catch (\Exception $e) {
             return back()->withError('An error occurred while editing the subject. Please try again later.');
         }
