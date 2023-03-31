@@ -32,17 +32,23 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
     /**
      * The attributes that should be cast.
      *
      * @var array<string, string>
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function subjects(): HasMany
+    {
+        return $this->hasMany(Subject::class);
+    }
 
     public function students(): HasMany
     {
         return $this->hasMany(Student::class);
     }
+
 }

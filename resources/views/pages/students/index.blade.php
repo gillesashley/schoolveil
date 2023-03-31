@@ -139,8 +139,10 @@
                                                         </tbody>
                                                         <tfoot>
                                                         <tr>
+                                                            <th rowspan="1" colspan="1">#</th>
                                                             <th rowspan="1" colspan="1">Firstname</th>
                                                             <th rowspan="1" colspan="1">Lastname</th>
+                                                            <th rowspan="1" colspan="1">Gender</th>
                                                             <th rowspan="1" colspan="1">Guardian</th>
                                                             <th rowspan="1" colspan="1">Phone Number</th>
                                                             <th rowspan="1" colspan="1">DOB</th>

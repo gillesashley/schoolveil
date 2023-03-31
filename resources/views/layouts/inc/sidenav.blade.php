@@ -27,6 +27,12 @@
                                     class="fas fa-user-graduate"></i></span><span
                                 class="pcoded-mtext">Students</span></a>
                     </li>
+                    <li data-username="widget Statistic Data Table User card Chart"
+                        class="nav-item pcoded-hasmenu {{Route::is('subjects.index') ? 'active' : ''}}">
+                        <a href="{{route('subjects.index')}}" class="nav-link"><span class="pcoded-micon"><i
+                                    class="fas fa-book"></i></span><span
+                                class="pcoded-mtext">Subjects</span></a>
+                    </li>
                     <li data-username="widget Statistic Data Table User card Chart" class="nav-item pcoded-hasmenu">
                         <a href="#!" class="nav-link"><span class="pcoded-micon"><i
                                     class="feather icon-layers"></i></span><span class="pcoded-mtext">Grading</span></a>

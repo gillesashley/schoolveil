@@ -5,20 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Student extends Model
+class Subject extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'firstname',
-        'lastname',
-        'gender',
-        'address',
-        'guardian',
-        'dob',
-        'phone_number',
+        'name',
         'user_id',
     ];
 
@@ -27,8 +21,8 @@ class Student extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function subjects(): BelongsToMany
+    public function students(): HasMany
     {
-        return $this->belongsToMany(Subject::class);
+        return $this->hasMany(Student::class);
     }
 }
