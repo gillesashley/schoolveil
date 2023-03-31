@@ -34,20 +34,13 @@ class StudentController extends Controller
      */
     public function store(StoreStudentRequest $request)
     {
-        $validated = $request->validated();
+        try {
+            Student::create($request->validated() + ['user_id' => auth()->user()->id]);
 
-        $student = Student::create([
-            'firstname' => $validated['firstname'],
-            'lastname' => $validated['lastname'],
-            'address' => $validated['address'],
-            'gender' => $validated['gender'],
-            'guardian' => $validated['guardian'],
-            'dob' => $validated['dob'],
-            'phone_number' => $validated['phone_number'],
-            'user_id' => auth()->user()->id,
-        ]);
-
-        return back()->withSuccess('Student created successfully');
+            return back()->withSuccess('Student created successfully');
+        } catch (\Exception $e) {
+            return back()->withErrors(['error' => 'An error occurred while creating the student. Please try again.']);
+        }
     }
 
     /**
@@ -79,20 +72,13 @@ class StudentController extends Controller
      */
     public function update(UpdateStudentRequest $request, Student $student)
     {
-        $validated = $request->validated();
-
-        $student->update([
-            'firstname' => $validated['firstname'],
-            'lastname' => $validated['lastname'],
-            'address' => $validated['address'],
-            'gender' => $validated['gender'],
-            'guardian' => $validated['guardian'],
-            'dob' => $validated['dob'],
-            'phone_number' => $validated['phone_number'],
-            'user_id' => auth()->user()->id,
-        ]);
-
-        return back()->withSuccess('Student edited successfully');
+        try {
+            $validated = $request->validated();
+            $student->update($validated + ['user_id' => auth()->user()->id]);
+            return back()->withSuccess('Student edited successfully');
+        } catch (\Exception $e) {
+            return back()->withError('An error occurred while updating the student. Please try again later.');
+        }
     }
 
     /**

@@ -27,7 +27,7 @@ class UpdateStudentRequest extends FormRequest
             'address' => 'required|max:255',
             'gender' => 'required|max:10',
             'guardian' => 'required|max:255',
-            'dob' => 'required|date',
+            'dob' => 'required|date|before_or_equal:today|after_or_equal:1900-01-01',
             'phone_number' => 'required|max:255',
         ];
     }
