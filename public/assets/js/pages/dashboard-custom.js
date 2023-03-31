@@ -1,5 +1,5 @@
 'use strict';
-$(document).ready(function() {
+$(document).ready(function () {
     function notify(message, type) {
         $.growl({
             message: message
@@ -23,7 +23,7 @@ $(document).ready(function() {
             }
         });
     };
-    notify('Use live Customizer for tons of layout options', 'inverse');
+    // notify('Use live Customizer for tons of layout options', 'inverse');
 
     // [ world-low chart ] start
     var latlong = {};
@@ -85,11 +85,11 @@ $(document).ready(function() {
     };
 
     var mapData = [{
-            "code": "MX",
-            "name": "Mexico",
-            "value": 114793341,
-            "color": "#a389d4"
-        },
+        "code": "MX",
+        "name": "Mexico",
+        "value": 114793341,
+        "color": "#a389d4"
+    },
         {
             "code": "BR",
             "name": "Brazil",
@@ -253,16 +253,16 @@ $(document).ready(function() {
         "addClassNames": true,
         "defs": {
             "filter": [{
-                    "x": "-50%",
-                    "y": "-50%",
-                    "width": "200%",
-                    "height": "200%",
-                    "id": "blur",
-                    "feGaussianBlur": {
-                        "in": "SourceGraphic",
-                        "stdDeviation": "30"
-                    }
-                },
+                "x": "-50%",
+                "y": "-50%",
+                "width": "200%",
+                "height": "200%",
+                "id": "blur",
+                "feGaussianBlur": {
+                    "in": "SourceGraphic",
+                    "stdDeviation": "30"
+                }
+            },
                 {
                     "id": "shadow",
                     "x": "-10%",

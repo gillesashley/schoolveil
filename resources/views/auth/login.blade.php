@@ -11,9 +11,9 @@
         <div class="row align-items-center w-100 align-items-stretch bg-white">
             <div class="d-none d-lg-flex col-lg-8 aut-bg-img align-items-center d-flex justify-content-center">
                 <div class="col-md-8">
-                    <h1 class="text-white mb-5">Login in Datta Able</h1>
-                    <p class="text-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                        Lorem Ipsum has been the industry's standard dummy text ever.</p>
+                    <h1 class="text-white mb-5">Login in School Veil</h1>
+                    <p class="text-white">Please enter your credentials to log in or Click on Signup if you are
+                        new.</p>
                 </div>
             </div>
             <div class="col-lg-4 align-items-stret h-100 align-items-center d-flex justify-content-center">

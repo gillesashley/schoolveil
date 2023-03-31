@@ -24,7 +24,7 @@
                     <li data-username="Vertical Horizontal Box Layout RTL fixed static Collapse menu color icon dark"
                         class="nav-item pcoded-hasmenu {{Route::is('students.index') ? 'active' : ''}}">
                         <a href="{{route('students.index')}}" class="nav-link"><span class="pcoded-micon"><i
-                                    class="feather icon-layout"></i></span><span
+                                    class="fas fa-user-graduate"></i></span><span
                                 class="pcoded-mtext">Students</span></a>
                     </li>
                     <li data-username="widget Statistic Data Table User card Chart" class="nav-item pcoded-hasmenu">

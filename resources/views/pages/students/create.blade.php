@@ -1,9 +1,9 @@
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="createStudentModal" tabindex="-1" role="dialog" aria-labelledby="createStudentModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Enter Student Details</h5>
+                <h5 class="modal-title" id="createStudentModalLabel">Enter Student Details</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
@@ -29,6 +29,15 @@
                         <input type="text" class="form-control" id="address" name="address">
                     </div>
                     <div class="form-group">
+                        <label for="address" class="col-form-label">Gender:</label>
+                        <select class="mb-3 form-control" name="gender">
+                            <option selected>--Select--</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
                         <label for="guardian" class="col-form-label">Guardian:</label>
                         <input type="text" class="form-control" id="guardian" name="guardian">
                     </div>
@@ -42,7 +51,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Create Student</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
                     </div>
                 </form>
             </div>

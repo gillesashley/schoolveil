@@ -40,6 +40,7 @@ class StudentController extends Controller
             'firstname' => $validated['firstname'],
             'lastname' => $validated['lastname'],
             'address' => $validated['address'],
+            'gender' => $validated['gender'],
             'guardian' => $validated['guardian'],
             'dob' => $validated['dob'],
             'phone_number' => $validated['phone_number'],
@@ -62,7 +63,7 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
-        //
+        return view('students.show', compact('student'));
     }
 
     /**
@@ -70,7 +71,7 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        //
+
     }
 
     /**
@@ -78,7 +79,20 @@ class StudentController extends Controller
      */
     public function update(UpdateStudentRequest $request, Student $student)
     {
-        //
+        $validated = $request->validated();
+
+        $student->update([
+            'firstname' => $validated['firstname'],
+            'lastname' => $validated['lastname'],
+            'address' => $validated['address'],
+            'gender' => $validated['gender'],
+            'guardian' => $validated['guardian'],
+            'dob' => $validated['dob'],
+            'phone_number' => $validated['phone_number'],
+            'user_id' => auth()->user()->id,
+        ]);
+
+        return back()->withSuccess('Student edited successfully');
     }
 
     /**

@@ -25,6 +25,7 @@ class StoreStudentRequest extends FormRequest
             'firstname' => 'required|max:255',
             'lastname' => 'required|max:255',
             'address' => 'required|max:255',
+            'gender' => 'required|max:10',
             'guardian' => 'required|max:255',
             'dob' => 'required|date',
             'phone_number' => 'required|max:255',

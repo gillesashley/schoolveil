@@ -23,12 +23,13 @@
                                         <div class="card-header d-flex">
                                             <h5 class="mr-auto">My Students</h5>
                                             <button type="button" class="btn btn-primary ml-auto" title=""
-                                                    data-toggle="modal" data-target="#exampleModal"
+                                                    data-toggle="modal" data-target="#createStudentModal"
                                                     data-original-title="btn btn-primary"><i class="fas fa-plus"></i>Add
                                                 Student
                                             </button>
+                                            @include('pages.students.create')
                                         </div>
-                                        @include('pages.students.create')
+
 
                                         <div class="card-block">
                                             <div class="table-responsive">
@@ -37,7 +38,8 @@
 
                                                 </div>
                                                 @if(count($students) < 1)
-                                                    <h1>No Students Yet.</h1>
+                                                    <h1 class="text-danger">No students yet. Create Students for you
+                                                        class.</h1>
                                                 @else
                                                     <table id="key-act-button"
                                                            class="display table nowrap table-striped table-hover dataTable"
@@ -48,6 +50,12 @@
                                                             <th class="sorting_asc" tabindex="0"
                                                                 aria-controls="key-act-button" rowspan="1" colspan="1"
                                                                 aria-sort="ascending"
+                                                                aria-label="hash: activate to sort column descending"
+                                                                style="width: 105px;">#
+                                                            </th>
+                                                            <th class="sorting_asc" tabindex="0"
+                                                                aria-controls="key-act-button" rowspan="1" colspan="1"
+                                                                aria-sort="ascending"
                                                                 aria-label="Name: activate to sort column descending"
                                                                 style="width: 105px;">Firstname
                                                             </th>
@@ -55,6 +63,11 @@
                                                                 aria-controls="key-act-button" rowspan="1" colspan="1"
                                                                 aria-label="Position: activate to sort column ascending"
                                                                 style="width: 164px;">Lastname
+                                                            </th>
+                                                            <th class="sorting" tabindex="0"
+                                                                aria-controls="key-act-button" rowspan="1" colspan="1"
+                                                                aria-label="Position: activate to sort column ascending"
+                                                                style="width: 164px;">Gender
                                                             </th>
                                                             <th class="sorting" tabindex="0"
                                                                 aria-controls="key-act-button" rowspan="1" colspan="1"
@@ -81,16 +94,33 @@
                                                         <tbody>
                                                         @foreach($students as $index => $student)
                                                             <tr role="row" class="odd">
+                                                                <td class="sorting_1">{{ $index + 1 }}</td>
                                                                 <td class="sorting_1">{{ $student->firstname }}</td>
                                                                 <td>{{ $student->lastname }}</td>
+                                                                <td>{{ $student->gender }}</td>
                                                                 <td>{{ $student->guardian }}</td>
                                                                 <td>{{ $student->phone_number  }}</td>
-                                                                <td>{{ $student->dob  }}</td>
-                                                                <td><a href="{{ route('students.edit', $student->id) }}"
-                                                                       class="btn btn-primary btn-sm btn-icon"
-                                                                       title="Edit">
-                                                                        <i class="feather icon-edit"></i>
-                                                                    </a>
+                                                                <td>{{ date('F j, Y', strtotime($student->dob)) }}</td>
+                                                                <td>
+                                                                    <button type="button"
+                                                                            class="btn btn-icon btn-success"
+                                                                            data-toggle="modal"
+                                                                            data-target="#showStudentModal-{{ $student->id }}">
+                                                                        <i
+                                                                            class="fas fa-eye"></i>
+                                                                    </button>
+                                                                    <!-- Call the show modal -->
+                                                                    @include('pages.students.show', ['student' => $student])
+                                                                    <button
+                                                                        class="btn btn-primary btn-sm btn-icon"
+                                                                        data-toggle="modal"
+                                                                        data-target="#updateStudentModal-{{$student->id}}"
+                                                                        title="Edit">
+                                                                        <i class="fas fa-edit"></i>
+                                                                    </button>
+                                                                    <!-- Call the edit modal -->
+                                                                    @include('pages.students.edit', ['student' => $student])
+
                                                                     <form
                                                                         action="{{ route('students.destroy', $student->id) }}"
                                                                         method="POST" style="display: inline-block">
@@ -100,7 +130,7 @@
                                                                                 class="btn btn-danger btn-sm btn-icon"
                                                                                 title="Delete"
                                                                                 onclick="return confirm('Are you sure you want to delete this student?')">
-                                                                            <i class="feather icon-trash-2"></i>
+                                                                            <i class="fas fa-trash-alt"></i>
                                                                         </button>
                                                                     </form>
                                                                 </td>
@@ -130,7 +160,6 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
     <!-- [ Main Content ] end -->
 @endsection
