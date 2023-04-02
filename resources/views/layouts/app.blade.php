@@ -25,8 +25,8 @@
     <!-- notification css -->
     <link rel="stylesheet" href="{{ asset('assets/plugins/notification/css/notification.min.css')}}">
 
-    @stack('styles')
     <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
+    @stack('styles')
 </head>
 <body>
 <div id="app">

@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Student;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
+use App\Models\Student;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
-use Illuminate\Http\Request;
-use function Termwind\render;
 
 class StudentController extends Controller
 {
@@ -77,7 +75,7 @@ class StudentController extends Controller
             $student->update($validated + ['user_id' => auth()->user()->id]);
             return back()->withSuccess('Student edited successfully');
         } catch (\Exception $e) {
-            return back()->withError('An error occurred while updating the student. Please try again later.');
+            return back()->withErrors('An error occurred while updating the student. Please try again later.');
         }
     }
 
@@ -86,7 +84,11 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        $student->delete();
-        return back()->withSuccess('Student Deleted Successfully');
+        try {
+            $student->delete();
+            return back()->withSuccess('Student Deleted Successfully');
+        } catch (\Exception $e) {
+            return back()->withErrors('An error occurred while deleting the student. Please try again');
+        }
     }
 }
