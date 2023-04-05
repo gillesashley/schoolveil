@@ -56,21 +56,55 @@
                                                                 aria-controls="key-act-button" rowspan="1" colspan="1"
                                                                 aria-sort="ascending"
                                                                 aria-label="Name: activate to sort column descending"
-                                                                style="width: 105px;">Firstname
+                                                                style="width: 105px;">Assessment Name
                                                             </th>
                                                             <th class="sorting" tabindex="0"
                                                                 aria-controls="key-act-button" rowspan="1" colspan="1"
                                                                 aria-label="Position: activate to sort column ascending"
-                                                                style="width: 164px;">Lastname
-                                                            </th>
-                                                            <th class="sorting" tabindex="0"
-                                                                aria-controls="key-act-button" rowspan="1" colspan="1"
-                                                                aria-label="Position: activate to sort column ascending"
-                                                                style="width: 164px;">Gender
+                                                                style="width: 164px;">Action
                                                             </th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
+                                                        @foreach($assessments as $index => $assessment)
+                                                            <tr role="row" class="odd">
+                                                                <td class="sorting_1">{{ $index+1 }}</td>
+                                                                <td class="sorting_1">{{ $assessment->assessment_name }}</td>
+                                                                <td>
+                                                                    <button type="button"
+                                                                            class="btn btn-icon btn-success"
+                                                                            data-toggle="modal"
+                                                                            data-target="#showStudentModal-{{ $assessment->id }}">
+                                                                        <i
+                                                                            class="fas fa-eye"></i>
+                                                                    </button>
+                                                                    <!-- Call the show modal -->
+                                                                    @include('pages.students.show', ['student' => $assessment])
+                                                                    <button
+                                                                        class="btn btn-primary btn-sm btn-icon"
+                                                                        data-toggle="modal"
+                                                                        data-target="#updateStudentModal-{{$assessment->id}}"
+                                                                        title="Edit">
+                                                                        <i class="fas fa-edit"></i>
+                                                                    </button>
+                                                                    <!-- Call the edit modal -->
+                                                                    @include('pages.assessments.edit', ['student' => $assessment])
+
+                                                                    <form
+                                                                        action="{{ route('assessments.destroy', $assessment->id) }}"
+                                                                        method="POST" style="display: inline-block">
+                                                                        @csrf
+                                                                        @method('DELETE')
+                                                                        <button type="submit"
+                                                                                class="btn btn-danger btn-sm btn-icon"
+                                                                                title="Delete"
+                                                                                onclick="return confirm('Are you sure you want to delete this Assessment?')">
+                                                                            <i class="fas fa-trash-alt"></i>
+                                                                        </button>
+                                                                    </form>
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
                                                         </tbody>
                                                     </table>
                                                 @endif

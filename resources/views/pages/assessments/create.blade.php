@@ -12,6 +12,43 @@
                 <form method="POST" action="{{ route('assessments.store') }}" id="assessmentCreateForm" novalidate>
                     @csrf
 
+                    <div class="form-group">
+                        <label for="subject" class="col-form-label">Subject:</label>
+                        <select class="mb-3 form-control @error('subject') is-invalid @enderror" name="subject"
+                                id="subject" required>
+                            <option value="">--Select--</option>
+                            @foreach($subjects as $index => $subject)
+                                <option value="{{$subject->name}}">{{$subject->name}}</option>
+                            @endforeach
+                        </select>
+                        @error('subject')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="score-over" class="col-form-label">Score Over?:</label>
+                        <input type="number" class="form-control @error('score-over') is-invalid @enderror"
+                               id="score-over"
+                               name="score-over" value="{{old('score-over')}}" placeholder="Eg. 40" required>
+                        @error('score-over')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+
+                    <h3>Enter Scores of students</h3>
+                    @foreach($students as $index => $student)
+                        <p>{{ $student->firstname }} {{{ $student->lastname }}}</p>
+                        <input type="number" class="form-control"
+                               id="score-over"
+                               name="score" required>
+                    @endforeach
+
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Save</button>
