@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\Student;
+use App\Models\Subject;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -28,6 +30,8 @@ class StudentFactory extends Factory
             'dob' => $this->faker->date(),
             'guardian' => $this->faker->name,
             'phone_number' => $this->faker->phoneNumber,
+            'subject_id' => Subject::factory()->create()->id,
+            'user_id' => User::factory(),
         ];
     }
 }

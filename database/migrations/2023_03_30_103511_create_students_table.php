@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\User;
+use App\Models\Subject;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -20,7 +20,8 @@ return new class extends Migration {
             $table->string('guardian');
             $table->date('dob');
             $table->string('phone_number');
-            $table->foreignIdFor(User::class);
+            $table->foreignIdFor(Subject::class);
+            $table->foreignId('user_id')->index()->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

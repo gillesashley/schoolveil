@@ -25,4 +25,9 @@ class Subject extends Model
     {
         return $this->hasMany(Student::class);
     }
+
+    public function assessments(): HasMany
+    {
+        return $this->hasMany(Assessment::class);
+    }
 }

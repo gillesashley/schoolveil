@@ -2,18 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Assessment;
 use App\Http\Requests\StoreAssessmentRequest;
 use App\Http\Requests\UpdateAssessmentRequest;
+use App\Models\Assessment;
 
 class AssessmentController extends Controller
 {
+    public function __construct()
+    {
+        return $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $students = auth()->user()->students()->get();
+        $subjects = auth()->user()->subjects()->get();
+        $assessments = auth()->user()->assessments()->get();
+        return view('pages.assessments.index', [
+            'students' => $students,
+            'subjects' => $subjects,
+            'assessments' => $assessments,
+        ]);
     }
 
     /**

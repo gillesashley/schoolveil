@@ -21,13 +21,13 @@
                                     @endif
                                     <div class="card">
                                         <div class="card-header d-flex">
-                                            <h5 class="mr-auto">My Students</h5>
+                                            <h5 class="mr-auto">Assessments</h5>
                                             <button type="button" class="btn btn-primary ml-auto" title=""
-                                                    data-toggle="modal" data-target="#createStudentModal"
+                                                    data-toggle="modal" data-target="#createAssessmentModal"
                                                     data-original-title="btn btn-primary"><i class="fas fa-plus"></i>Add
-                                                Student
+                                                Assessment
                                             </button>
-                                            @include('pages.students.create')
+                                            @include('pages.assessments.create')
                                         </div>
 
 
@@ -37,9 +37,8 @@
                                                      class="dataTables_wrapper dt-bootstrap4">
 
                                                 </div>
-                                                @if(count($students) < 1)
-                                                    <h1 class="text-danger">No students yet. Create Students for you
-                                                        class.</h1>
+                                                @if(count($assessments) < 1)
+                                                    <h1 class="text-danger">Create an assessment</h1>
                                                 @else
                                                     <table id="key-act-button"
                                                            class="display table nowrap table-striped table-hover dataTable"
@@ -69,86 +68,10 @@
                                                                 aria-label="Position: activate to sort column ascending"
                                                                 style="width: 164px;">Gender
                                                             </th>
-                                                            <th class="sorting" tabindex="0"
-                                                                aria-controls="key-act-button" rowspan="1" colspan="1"
-                                                                aria-label="Office: activate to sort column ascending"
-                                                                style="width: 72px;">Guardian
-                                                            </th>
-                                                            <th class="sorting" tabindex="0"
-                                                                aria-controls="key-act-button" rowspan="1" colspan="1"
-                                                                aria-label="Age: activate to sort column ascending"
-                                                                style="width: 26px;">Phone Number
-                                                            </th>
-                                                            <th class="sorting" tabindex="0"
-                                                                aria-controls="key-act-button" rowspan="1" colspan="1"
-                                                                aria-label="Age: activate to sort column ascending"
-                                                                style="width: 26px;">DOB
-                                                            </th>
-                                                            <th class="sorting" tabindex="0"
-                                                                aria-controls="key-act-button" rowspan="1" colspan="1"
-                                                                aria-label="Age: activate to sort column ascending"
-                                                                style="width: 26px;">Action
-                                                            </th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        @foreach($students as $index => $student)
-                                                            <tr role="row" class="odd">
-                                                                <td class="sorting_1">{{ $index + 1 }}</td>
-                                                                <td class="sorting_1">{{ $student->firstname }}</td>
-                                                                <td>{{ $student->lastname }}</td>
-                                                                <td>{{ $student->gender }}</td>
-                                                                <td>{{ $student->guardian }}</td>
-                                                                <td>{{ $student->phone_number  }}</td>
-                                                                <td>{{ date('F j, Y', strtotime($student->dob)) }}</td>
-                                                                <td>
-                                                                    <button type="button"
-                                                                            class="btn btn-icon btn-success"
-                                                                            data-toggle="modal"
-                                                                            data-target="#showStudentModal-{{ $student->id }}">
-                                                                        <i
-                                                                            class="fas fa-eye"></i>
-                                                                    </button>
-                                                                    <!-- Call the show modal -->
-                                                                    @include('pages.students.show', ['student' => $student])
-                                                                    <button
-                                                                        class="btn btn-primary btn-sm btn-icon"
-                                                                        data-toggle="modal"
-                                                                        data-target="#updateStudentModal-{{$student->id}}"
-                                                                        title="Edit">
-                                                                        <i class="fas fa-edit"></i>
-                                                                    </button>
-                                                                    <!-- Call the edit modal -->
-                                                                    @include('pages.students.edit', ['student' => $student])
-
-                                                                    <form
-                                                                        action="{{ route('students.destroy', $student->id) }}"
-                                                                        method="POST" style="display: inline-block">
-                                                                        @csrf
-                                                                        @method('DELETE')
-                                                                        <button type="submit"
-                                                                                class="btn btn-danger btn-sm btn-icon"
-                                                                                title="Delete"
-                                                                                onclick="return confirm('Are you sure you want to delete this student?')">
-                                                                            <i class="fas fa-trash-alt"></i>
-                                                                        </button>
-                                                                    </form>
-                                                                </td>
-                                                            </tr>
-                                                        @endforeach
                                                         </tbody>
-                                                        <tfoot>
-                                                        <tr>
-                                                            <th rowspan="1" colspan="1">#</th>
-                                                            <th rowspan="1" colspan="1">Firstname</th>
-                                                            <th rowspan="1" colspan="1">Lastname</th>
-                                                            <th rowspan="1" colspan="1">Gender</th>
-                                                            <th rowspan="1" colspan="1">Guardian</th>
-                                                            <th rowspan="1" colspan="1">Phone Number</th>
-                                                            <th rowspan="1" colspan="1">DOB</th>
-                                                            <th rowspan="1" colspan="1">Action</th>
-                                                        </tr>
-                                                        </tfoot>
                                                     </table>
                                                 @endif
                                             </div>
