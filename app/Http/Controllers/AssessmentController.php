@@ -29,17 +29,23 @@ class AssessmentController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(StoreAssessmentRequest $request)
+    {
+        try {
+            Assessment::create($request->validated() + ['user_id' => auth()->user()->id]);
+
+            return back()->withSuccess('Student created successfully');
+        } catch (\Exception $e) {
+            return back()->withErrors(['error' => 'An error occurred while creating the student. Please try again.']);
+        }
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
     {
         //
     }

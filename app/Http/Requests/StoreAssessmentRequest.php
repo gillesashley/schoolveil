@@ -11,7 +11,7 @@ class StoreAssessmentRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class StoreAssessmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'assessment_name' => 'required',
+            'score' => 'required|integer|min:0|max:100',
+            'score_over' => 'required|integer|min:0|max:100',
+            'subject' => 'required|exists:subjects,name',
+            'scores.*' => 'required|integer|min:0|max:100',
         ];
     }
 }

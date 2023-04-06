@@ -20,7 +20,6 @@ class Student extends Model
         'guardian',
         'dob',
         'phone_number',
-        'subject_id',
         'user_id',
     ];
 

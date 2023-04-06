@@ -13,6 +13,19 @@
                     @csrf
 
                     <div class="form-group">
+                        <label for="assessment_name" class="col-form-label">Assessment Name</label>
+                        <input type="text" class="form-control @error('assessment_name') is-invalid @enderror"
+                               id="assessment_name"
+                               name="assessment_name" value="{{old('assessment_name')}}"
+                               placeholder="Eg. Homework 1, Classtest 1" required>
+                        @error('assessment_name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
                         <label for="subject" class="col-form-label">Subject:</label>
                         <select class="mb-3 form-control @error('subject') is-invalid @enderror" name="subject"
                                 id="subject" required>
@@ -29,24 +42,26 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="score-over" class="col-form-label">Score Over?:</label>
-                        <input type="number" class="form-control @error('score-over') is-invalid @enderror"
-                               id="score-over"
-                               name="score-over" value="{{old('score-over')}}" placeholder="Eg. 40" required>
-                        @error('score-over')
+                        <label for="score_over" class="col-form-label">Score Over?:</label>
+                        <input type="number" class="form-control @error('score_over') is-invalid @enderror"
+                               id="score_over"
+                               name="score_over" value="{{old('score_over')}}" placeholder="Eg. 40" required>
+                        @error('score_over')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                         @enderror
                     </div>
 
-                    <h3>Enter Scores of students</h3>
-                    @foreach($students as $index => $student)
-                        <p>{{ $student->firstname }} {{{ $student->lastname }}}</p>
-                        <input type="number" class="form-control"
-                               id="score-over"
-                               name="score" required>
-                    @endforeach
+                    <div class="form-group">
+                        <h3>Enter Scores of students</h3>
+                        @foreach($students as $index => $student)
+                            <label
+                                for="score-{{ $student->id }}">{{ $student->firstname }} {{ $student->lastname }}</label>
+                            <input type="number" class="form-control" id="score-{{ $student->id }}"
+                                   name="score-{{ $student->id }}" max="100" required>
+                        @endforeach
+                    </div>
 
 
                     <div class="modal-footer">

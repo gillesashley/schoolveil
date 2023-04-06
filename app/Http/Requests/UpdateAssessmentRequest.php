@@ -11,7 +11,7 @@ class UpdateAssessmentRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class UpdateAssessmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'assessment_name' => 'required',
+            'score' => 'required|numeric|min:0|max:100',
+            'score_over' => 'required|numeric|min:0|max:100',
+            'subject_id' => 'required|exists:subjects,id',
+            'students.*' => 'required|exists:students,id',
         ];
     }
 }
