@@ -59,7 +59,7 @@
                             <label
                                 for="score-{{ $student->id }}">{{ $student->firstname }} {{ $student->lastname }}</label>
                             <input type="number" class="form-control" id="score-{{ $student->id }}"
-                                   name="score-{{ $student->id }}" max="100" required>
+                                   name="score[{{ $student->id }}]" max="100" required>
                         @endforeach
                     </div>
 
