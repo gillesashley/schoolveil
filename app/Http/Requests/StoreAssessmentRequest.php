@@ -23,10 +23,10 @@ class StoreAssessmentRequest extends FormRequest
     {
         return [
             'assessment_name' => 'required',
-            'score' => 'required|integer|min:0|max:100',
+            'score' => 'required|array',
             'score_over' => 'required|integer|min:0|max:100',
             'subject' => 'required|exists:subjects,name',
-            'scores.*' => 'required|integer|min:0|max:100',
+            'score.*' => 'required|integer|min:0|max:100',
         ];
     }
 }

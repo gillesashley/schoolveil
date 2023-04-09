@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreAssessmentRequest;
 use App\Http\Requests\UpdateAssessmentRequest;
 use App\Models\Assessment;
-use App\Models\Score;
+use App\Models\Student;
+use App\Models\Subject;
 
 class AssessmentController extends Controller
 {
@@ -34,21 +35,42 @@ class AssessmentController extends Controller
      */
     public function store(StoreAssessmentRequest $request)
     {
-        try {
-            $assessment = Assessment::create($request->validated() + ['user_id' => auth()->user()->id]);
+        //dd($request->all());
+        $validated = $request->validated();
 
-            foreach ($request->score as $student_id => $score) {
-                $score = new Score();
-                $score->assessment_id = $assessment->id;
-                $score->student_id = $student_id;
-                $score->score = $score;
-                $score->save();
-            }
+        // Create the assessment instance
+        $assessment = new Assessment();
+        $assessment->assessment_name = $validated['assessment_name'];
+        $assessment->score = implode(',', $validated['score']);
+        $assessment->score_over = $validated['score_over'];
+        $assessment->user_id = auth()->user()->id;
 
-            return back()->withSuccess('Assessment created successfully');
-        } catch (\Exception $e) {
-            return back()->withErrors(['error' => 'An error occurred while creating the assessment. Please try again.']);
+        // Save the assessment instance to the database
+        if (!$assessment->save()) {
+            // handle error, for example:
+            return back()->withInput()->withErrors(['error' => 'Failed to save assessment']);
         }
+
+        $assessment_id = $assessment->id;
+
+        // Save the subject for the assessment
+        $subject = Subject::where('name', $validated['subject'])->firstOrFail();
+        $assessment->subjects()->syncWithoutDetaching($subject->id);
+
+        // Save the scores for each student
+        foreach ($validated['score'] as $student_id => $score) {
+            $student = Student::findOrFail($student_id);
+            $assessment->students()->syncWithoutDetaching([
+                $student->id => [
+                    'score' => $score,
+                    'subject_id' => $subject->id,
+                    'assessment_id' => $assessment_id,
+                    'student_id' => $student_id,
+                ]
+            ]);
+        }
+
+        return redirect()->route('assessments.index')->with('success', 'Assessment saved successfully.');
     }
 
     /**
